@@ -1,6 +1,6 @@
 export class Docs {
-  constructor(query, docName){
-    this.query = query;
+  constructor(symptom, docName){
+    this.symptom = symptom;
     this.name = docName;
   }
 

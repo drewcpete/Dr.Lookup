@@ -10,25 +10,25 @@ $(document).ready(function(){
     // event.preventDefaul();
     const query = $("#queryIn").val();
     $("#queryIn").val("");
-    const doctor = new Docs();
-    console.log(doctor.query + query + " is the searched query");
+    const doctor = new Docs(query);
+    console.log(doctor.symptom + " " + query + " is the searched query");
 
-    let promise = doctor.getDocIssue();
+    let promise = doctor.getDocIssue(doctor.symptom);
 
     promise.then(function(response){
       const body = JSON.parse(response);
-      console.log(body.data.profile);
-      let profile = body.data.profile;
-      let address = body.data.visit_address;
-      $("#doctorOut").append("<ul id='docList'></ul>")
-      for (var i = 0; i < newArray.length; i++) {
+      console.log(body);
+      let drData = body.data;
 
-        $("#docList").append(`<li><strong>Name:</strong>${newArray[i].profile.first_name} ${newArray[i].profile.last_name}</li>`);
-        $("#docList").append(`<li><strong>Address:</strong>${newArray[i].visit_address.street}, ${newArray[i].visit_address.street2}, ${newArray[i].visit_address.city}, ${newArray[i].phones.number}</li>`)
+      $("#doctorOut").append("<ul id='docList'></ul>")
+      for (var i = 0; i < drData.length; i++) {
+
+        $("#docList").append(`<li><strong>Name:</strong>${drData[i].profile.first_name} ${drData[i].profile.last_name}</li>`);
       }
-    });
-    let docData = doctor.getDocIssue(query);
-    console.log(docData);
+  });
+
+
+
 
   })
   $("#nameBtn").click(function(){
