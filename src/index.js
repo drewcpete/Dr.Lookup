@@ -13,16 +13,18 @@ $(document).ready(function(){
     const doctor = new Docs();
     console.log(doctor.query + query + " is the searched query");
 
-    let promise = doctor.getDocIssue(query);
+    let promise = doctor.getDocIssue();
 
     promise.then(function(response){
       const body = JSON.parse(response);
-      console.log(body[i]);
+      console.log(body.data.profile);
+      let profile = body.data.profile;
+      let address = body.data.visit_address;
       $("#doctorOut").append("<ul id='docList'></ul>")
-      for (var i = 0; i < response.length; i++) {
+      for (var i = 0; i < newArray.length; i++) {
 
-        $("#docList").append(`<li><strong>Name:</strong>${body[i].data.profile.first_name} ${body[i].data.profile.last_name}</li>`);
-        $("#docList").append(`<li><strong>Address:</strong>${body[i].data.visit_address.street}, ${body[i].data.visit_address.street2}, ${body[i].data.visit_address.city}, ${body[i].data.phones.number}</li>`)
+        $("#docList").append(`<li><strong>Name:</strong>${newArray[i].profile.first_name} ${newArray[i].profile.last_name}</li>`);
+        $("#docList").append(`<li><strong>Address:</strong>${newArray[i].visit_address.street}, ${newArray[i].visit_address.street2}, ${newArray[i].visit_address.city}, ${newArray[i].phones.number}</li>`)
       }
     });
     let docData = doctor.getDocIssue(query);
