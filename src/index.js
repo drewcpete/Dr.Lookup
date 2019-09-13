@@ -1,4 +1,4 @@
-import $ from 'jquery';
+ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
@@ -12,12 +12,14 @@ $(document).ready(function(){
     $("#queryIn").val("");
     const doctor = new Docs(query);
     console.log(doctor.query + query + " is the searched query");
+    let docData = doctor.getDocIssue(query);
+    console.log(docData);
 
   })
   $("#nameBtn").click(function(){
     const docName = $("#nameIn").val()
     $("#nameIn").val("")
-    const doctor = new Docs(name)
+    const doctor = new Docs(docName)
     console.log(docName + " is the searched name")
   })
 })
