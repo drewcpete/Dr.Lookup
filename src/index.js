@@ -17,8 +17,9 @@ $(document).ready(function(){
 
     promise.then(function(response){
       const body = JSON.parse(response);
-      console.log(body);
+
       let drData = body.data;
+      console.log(drData[0].profile.first_name);
 
       $("#doctorOut").append("<ul id='docList'></ul>")
       for (var i = 0; i < drData.length; i++) {
