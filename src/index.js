@@ -17,11 +17,12 @@ $(document).ready(function(){
 
     promise.then(function(response){
       const body = JSON.parse(response);
+      console.log(body[i]);
       $("#doctorOut").append("<ul id='docList'></ul>")
       for (var i = 0; i < response.length; i++) {
 
-        $("#docList").append(`<li><strong>Name:</strong>${body.data.profile.first_name} ${body.data.profile.last_name}</li>`);
-        $("#docList").append(`<li><strong>Address:</strong>${body.data.visit_address.street}, ${body.data.visit_address.street2}, ${body.data.visit_address.city}, ${body.data.phones.number}</li>`)
+        $("#docList").append(`<li><strong>Name:</strong>${body[i].data.profile.first_name} ${body[i].data.profile.last_name}</li>`);
+        $("#docList").append(`<li><strong>Address:</strong>${body[i].data.visit_address.street}, ${body[i].data.visit_address.street2}, ${body[i].data.visit_address.city}, ${body[i].data.phones.number}</li>`)
       }
     });
     let docData = doctor.getDocIssue(query);
