@@ -5,13 +5,22 @@
     <title>Lets look up a doctor!</title>
   </head>
   <body>
-    <form id="lookupForm" action="index.html" method="post">
-      <label for="queryIn">Look for a doctor able to resolve your issue:</label>
-      <input type="text" id="queryIn" name="" value="">
-      <label for="">Look for a doctor by name:</label>
-      <input type="text" id="nameIn" name="" value="">
-      <button type="button" class="btn btn-info" name="button">Submit</button>
-    </form>
+    <div class="container">
+
+      <form id="lookupForm" action="index.html" method="post">
+        <label for="queryIn">Look for a doctor able to resolve your issue:</label>
+        <br>
+        <input type="text" id="queryIn" name="" value="">
+        <button type="button" id="queryBtn" class="btn btn-info" name="button">Submit</button>
+        <br>
+        <br>
+        <br>
+        <label for="">Look for a doctor by name:</label>
+        <br>
+        <input type="text" id="nameIn"  value="">
+        <button type="button" id="nameBtn" class="btn btn-info" name="button">Submit</button>
+      </form>
+    </div>
     <div id="doctorOut">
 
     </div>

@@ -1,7 +1,7 @@
 {
   "name": "doocup",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "test": "karma start karma.conf.js",
     "build": "webpack --mode development",

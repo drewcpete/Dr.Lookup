@@ -2,16 +2,14 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import {popDoc} from "./doc.js"
-import {Doc} from "./doc.js"
+
+import {Docs} from "./doc.js"
 
 $(document).ready(function(){
-  $("#lookupForm").submit(function(event) {
-    event.preventDefaul();
-    let query = $("#query").val("");
-    const doctor = $("#doctorIn")
-
-    let doctors = new Doctors
+  $("#queryBtn").click(function(event) {
+    // event.preventDefaul();
+    const query = $("#query").val("");
+    const doctor = new Doctors(issue)
     console.log(query + " is the issue");
 
     let request = new XMLHttpRequest();
