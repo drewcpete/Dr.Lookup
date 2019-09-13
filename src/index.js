@@ -10,8 +10,20 @@ $(document).ready(function(){
     // event.preventDefaul();
     const query = $("#queryIn").val();
     $("#queryIn").val("");
-    const doctor = new Docs(query);
+    const doctor = new Docs();
     console.log(doctor.query + query + " is the searched query");
+
+    let promise = doctor.getDocIssue(query);
+
+    promise.then(function(response){
+      const body = JSON.parse(response);
+      $("#doctorOut").append("<ul id='docList'></ul>")
+      for (var i = 0; i < response.length; i++) {
+
+        $("#docList").append(`<li><strong>Name:</strong>${body.data.profile.first_name} ${body.data.profile.last_name}</li>`);
+        $("#docList").append(`<li><strong>Address:</strong>${body.data.visit_address.street}, ${body.data.visit_address.street2}, ${body.data.visit_address.city}, ${body.data.phones.number}</li>`)
+      }
+    });
     let docData = doctor.getDocIssue(query);
     console.log(docData);
 
