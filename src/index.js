@@ -21,11 +21,12 @@ $(document).ready(function(){
       let drData = body.data;
       console.log(drData[0].profile.first_name);
 
-      $("#doctorOut").append("<ul id='docList'></ul>")
+      $("#doctorOut").append(`<ul id='docList'></ul>`)
       for (var i = 0; i < drData.length; i++) {
 
-        $("#docList").append(`<li><strong>Name:</strong>${drData[i].profile.first_name} ${drData[i].profile.last_name}</li>`);
+        $("#docList").append(`<li id="doc${i}"><strong>Name: </strong>${drData[i].profile.first_name + " " + drData[i].profile.last_name}<br><strong>Address: </strong> ${drData[i].practices.visit_address.street}  ${drData[i].practices.visit_address.street2}</li>`);
       }
+
   });
 
 
