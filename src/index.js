@@ -9,9 +9,11 @@ $(document).ready(function(){
   $("#queryBtn").click(function() {
     // event.preventDefaul();
     const query = $("#queryIn").val();
+    const name  = $("#nameIn").val();
+    $("#nameIn").val("")
     $("#queryIn").val("");
-    const doctor = new Docs(query);
-    let promise = doctor.getDocIssue(doctor.symptom);
+    const doctor = new Docs();
+    let promise = doctor.getDocIssue(query, name);
 
     promise.then(function(response){
       const body = JSON.parse(response);
@@ -19,9 +21,19 @@ $(document).ready(function(){
       console.log(drData[0].profile.first_name);
 
       $("#doctorOut").append(`<ul id='docList'></ul>`)
-      for (var i = 0; i < drData.length; i++) {
 
-        $("#docList").append(`<li id="doc${i}"><strong>Name: </strong>${drData[i].profile.first_name + " " + drData[i].profile.last_name}<br><strong>Address: </strong> ${drData[i].practices[0].visit_address.street}  ${drData[i].practices[0].visit_address.street2}</li>`);
+        if (drData.length === 0) {
+          $("#docList").text("Sorry but we couldn't find any doctors meeting your requirements.")
+        } else {
+          for (var i = 0; i < drData.length; i++) {
+            $("#docList").append(`<li id="doc${i}"><strong>Name: </strong>${drData[i].profile.first_name + " " + drData[i].profile.last_name}<br><strong>Address: </strong>
+            ${drData[i].practices[0].visit_address.street}  ${drData[i].practices[0].visit_address.street2}</li>`);
+        }
+      }
+      if (body.meta.length <= 0) {
+        $("#doctorOut").append("We couldn't find any doctors with that name")
+      } else {
+        $("#doctorOut").append(body.meta)
       }
     });
   });
@@ -35,7 +47,7 @@ $(document).ready(function(){
     promise.then(function(response) {
       const body = JSON.parse(response);
       let drData = body.data;
-      for (var i = 0; i < drData.length; i++) {
+      for (var i = 0; i < body.data.meta.length; i++) {
         if (drData[i].profile.first_name + " " + drData[i].profile.last_name === name) {
           console.log(name);
           console.log(drData[i].profile.first_name + " " + drData[i].profile.last_name);

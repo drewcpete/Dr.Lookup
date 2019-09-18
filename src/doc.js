@@ -1,7 +1,6 @@
 export class Docs {
-  constructor(symptom, name){
-    this.symptom = symptom;
-    this.name = name;
+  constructor(){
+
   }
 
   getDocIssue(query){
@@ -13,6 +12,7 @@ export class Docs {
           resolve(request.response);
         } else {
           reject(Error(request.statusText));
+          alert("connection didn't work")
         }
       }
         request.open("GET", url, true);
