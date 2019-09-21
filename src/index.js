@@ -30,30 +30,37 @@ $(document).ready(function(){
             ${drData[i].practices[0].visit_address.street}  ${drData[i].practices[0].visit_address.street2}</li>`);
         }
       }
-      if (body.meta.length <= 0) {
-        $("#doctorOut").append("We couldn't find any doctors with that name")
-      } else {
-        $("#doctorOut").append(body.meta)
-      }
-    });
-  });
 
-  $("#nameBtn").click(function(){
-    const name = $("#nameIn").val();
-    $("#nameIn").val("");
-    $("#doctorOut").append(`<ul id='docList'></ul>`);
-    const doctor = new Docs(name);
-    let promise = doctor.getDocIssue(doctor.name);
-    promise.then(function(response) {
-      const body = JSON.parse(response);
-      let drData = body.data;
-      for (var i = 0; i < body.data.meta.length; i++) {
-        if (drData[i].profile.first_name + " " + drData[i].profile.last_name === name) {
-          console.log(name);
-          console.log(drData[i].profile.first_name + " " + drData[i].profile.last_name);
-          $("#docList").append(`<li id="doc${i}"><strong>Name: </strong>${drData[i].profile.first_name + " " + drData[i].profile.last_name}<br><strong>Address: </strong> ${drData[i].practices[0].visit_address.street}  ${drData[i].practices[0].visit_address.street2}</li>`);
-        }
-      }
+      // if (body.data.length === 0) {
+      //   $("#doctorOut").append("We couldn't find any doctors with that name")
+      // } else {
+      //   for (var j = 0; j < drData.length; j++) {
+      //     $("#doctorOut").append()
+      //   $("#doctorOut").append()
+      //   }
+      // }
+
     });
   });
 });
+
+
+//   $("#nameBtn").click(function(){
+//     const name = $("#nameIn").val();
+//     $("#nameIn").val("");
+//     $("#doctorOut").append(`<ul id='docList'></ul>`);
+//     const doctor = new Docs(name);
+//     let promise = doctor.getDocIssue(doctor.name);
+//     promise.then(function(response) {
+//       const body = JSON.parse(response);
+//       let drData = body.data;
+//       for (var i = 0; i < body.data.meta.length; i++) {
+//         if (drData[i].profile.first_name + " " + drData[i].profile.last_name === name) {
+//           console.log(name);
+//           console.log(drData[i].profile.first_name + " " + drData[i].profile.last_name);
+//           $("#docList").append(`<li id="doc${i}"><strong>Name: </strong>${drData[i].profile.first_name + " " + drData[i].profile.last_name}<br><strong>Address: </strong> ${drData[i].practices[0].visit_address.street}  ${drData[i].practices[0].visit_address.street2}</li>`);
+//         }
+//       }
+//     });
+//   });
+// });
