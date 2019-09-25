@@ -11,7 +11,7 @@ export class Docs {
           resolve(request.response);
         } else {
           reject(Error(request.statusText));
-          alert("connection didn't work")
+          alert("connection didn't work");
         }
       }
         request.open("GET", url, true);
